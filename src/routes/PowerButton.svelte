@@ -1,13 +1,30 @@
 <script>
 	import * as Tone from 'tone';
 
-	function handleClick() {
-		//create a synth and connect it to the main output (your speakers)
-		const synth = new Tone.Synth().toDestination();
+	export let isPowerOn = false;
 
-		//play a middle 'C' for the duration of an 8th note
-		synth.triggerAttackRelease('C4', '8n');
+	async function handleClick() {
+		if (!isPowerOn) {
+			await Tone.start();
+			isPowerOn = true;
+		} else {
+			isPowerOn = false;
+		}
 	}
 </script>
 
-<button on:click={handleClick}> click me! </button>
+<button on:click={handleClick}> Start audio </button>
+
+{#if isPowerOn}
+	<style>
+		button {
+			background-color: green;
+		}
+	</style>
+{:else}
+	<style>
+		button {
+			background-color: red;
+		}
+	</style>
+{/if}
