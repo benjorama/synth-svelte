@@ -6,8 +6,6 @@
 
 	function handleClick() {
 		synth ? synth.triggerAttackRelease(pitch, '8n') : '';
-		console.log(synth);
-		console.log('clicked!');
 	}
 
 	function handleOnKeyUp() {
