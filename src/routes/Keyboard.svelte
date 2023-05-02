@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type * as Tone from 'tone';
-	import BlackKey from './BlackKey.svelte';
 	import PowerButton from './PowerButton.svelte';
 	import Key from './Key.svelte';
 
@@ -26,13 +25,13 @@
 
 	<div class="blackKeys">
 		<div class="group2">
-			<BlackKey pitch={'C#4'} {synth} />
-			<BlackKey pitch={'D#4'} {synth} />
+			<Key pitch={'C#4'} {synth} />
+			<Key pitch={'D#4'} {synth} />
 		</div>
 		<div class="group3">
-			<BlackKey pitch={'F#4'} {synth} />
-			<BlackKey pitch={'G#4'} {synth} />
-			<BlackKey pitch={'A#4'} {synth} />
+			<Key pitch={'F#4'} {synth} />
+			<Key pitch={'G#4'} {synth} />
+			<Key pitch={'A#4'} {synth} />
 		</div>
 	</div>
 </div>

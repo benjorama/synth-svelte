@@ -21,38 +21,46 @@
 	}
 </script>
 
-<div
-	class="key"
-	on:click={handleClick}
-	on:keyup={handleOnKeyUp}
-	on:keydown={handleOnKeyDown}
-	on:keypress={handleOnKeyPress}
->
-	{pitch}
-</div>
-
 {#if pitch.includes('#')}
-	<style>
-		.key {
-			box-sizing: border-box;
-			width: 2em;
-			height: 9em;
-			margin-left: 1em;
-			background-color: black;
-			color: white;
-			text-align: center;
-			overflow-wrap: break-word;
-			border: 1px solid #bbb;
-		}
-	</style>
+	<div
+		class="blackKey"
+		on:click={handleClick}
+		on:keyup={handleOnKeyUp}
+		on:keydown={handleOnKeyDown}
+		on:keypress={handleOnKeyPress}
+	>
+		{pitch}
+	</div>
 {:else}
-	<style>
-		.key {
-			box-sizing: border-box;
-			width: 3em;
-			height: 14em;
-			background-color: white;
-			border: 1px solid #bbb;
-		}
-	</style>
+	<div
+		class="whiteKey"
+		on:click={handleClick}
+		on:keyup={handleOnKeyUp}
+		on:keydown={handleOnKeyDown}
+		on:keypress={handleOnKeyPress}
+	>
+		{pitch}
+	</div>
 {/if}
+
+<style>
+	.blackKey {
+		box-sizing: border-box;
+		width: 2em;
+		height: 9em;
+		margin-left: 1em;
+		background-color: black;
+		color: white;
+		text-align: center;
+		overflow-wrap: break-word;
+		border: 1px solid #bbb;
+	}
+
+	.whiteKey {
+		box-sizing: border-box;
+		width: 3em;
+		height: 14em;
+		background-color: white;
+		border: 1px solid #bbb;
+	}
+</style>
