@@ -1,0 +1,58 @@
+<script lang="ts">
+	import type * as Tone from 'tone';
+
+	export let pitch: string;
+	export let synth: Tone.Synth | undefined = undefined;
+
+	function handleClick() {
+		synth ? synth.triggerAttackRelease(pitch, '8n') : '';
+		console.log(synth);
+		console.log('clicked!');
+	}
+
+	function handleOnKeyUp() {
+		console.log('key up');
+	}
+	function handleOnKeyDown() {
+		console.log('key down');
+	}
+	function handleOnKeyPress() {
+		console.log('key press');
+	}
+</script>
+
+<div
+	class="key"
+	on:click={handleClick}
+	on:keyup={handleOnKeyUp}
+	on:keydown={handleOnKeyDown}
+	on:keypress={handleOnKeyPress}
+>
+	{pitch}
+</div>
+
+{#if pitch.includes('#')}
+	<style>
+		.key {
+			box-sizing: border-box;
+			width: 2em;
+			height: 9em;
+			margin-left: 1em;
+			background-color: black;
+			color: white;
+			text-align: center;
+			overflow-wrap: break-word;
+			border: 1px solid #bbb;
+		}
+	</style>
+{:else}
+	<style>
+		.key {
+			box-sizing: border-box;
+			width: 3em;
+			height: 14em;
+			background-color: white;
+			border: 1px solid #bbb;
+		}
+	</style>
+{/if}

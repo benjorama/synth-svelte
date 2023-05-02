@@ -1,30 +1,38 @@
 <script lang="ts">
+	import type * as Tone from 'tone';
 	import BlackKey from './BlackKey.svelte';
 	import PowerButton from './PowerButton.svelte';
-	import WhiteKey from './WhiteKey.svelte';
+	import Key from './Key.svelte';
+
+	export let synth: Tone.Synth | undefined = undefined;
+
+	function handleSaveSynth(e: { detail: { synth: Tone.Synth<Tone.SynthOptions> } }) {
+		synth = e.detail.synth;
+	}
 </script>
 
 <div>
-	<PowerButton />
+	<PowerButton on:synth={handleSaveSynth} />
 	<div class="whiteKeys">
-		<WhiteKey pitch={'C4'} />
-		<WhiteKey pitch={'D4'} />
-		<WhiteKey pitch={'E4'} />
-		<WhiteKey pitch={'F4'} />
-		<WhiteKey pitch={'G4'} />
-		<WhiteKey pitch={'A4'} />
-		<WhiteKey pitch={'B4'} />
+		<Key pitch={'C4'} {synth} />
+		<Key pitch={'D4'} {synth} />
+		<Key pitch={'E4'} {synth} />
+		<Key pitch={'F4'} {synth} />
+		<Key pitch={'G4'} {synth} />
+		<Key pitch={'A4'} {synth} />
+		<Key pitch={'B4'} {synth} />
+		<Key pitch={'C5'} {synth} />
 	</div>
 
 	<div class="blackKeys">
 		<div class="group2">
-			<BlackKey pitch={'C#/Db4'} />
-			<BlackKey pitch={'D#/Eb4'} />
+			<BlackKey pitch={'C#4'} {synth} />
+			<BlackKey pitch={'D#4'} {synth} />
 		</div>
 		<div class="group3">
-			<BlackKey pitch={'F#/Gb4'} />
-			<BlackKey pitch={'G#/Ab4'} />
-			<BlackKey pitch={'A#/Bb4'} />
+			<BlackKey pitch={'F#4'} {synth} />
+			<BlackKey pitch={'G#4'} {synth} />
+			<BlackKey pitch={'A#4'} {synth} />
 		</div>
 	</div>
 </div>
@@ -39,7 +47,7 @@
 		display: flex;
 		position: relative;
 		bottom: 14em;
-		left: 1em;
+		right: 0.5em;
 		justify-content: center;
 	}
 

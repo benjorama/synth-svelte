@@ -1,5 +1,8 @@
 <script>
 	import * as Tone from 'tone';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let isPowerOn = false;
 
@@ -7,6 +10,9 @@
 		if (!isPowerOn) {
 			await Tone.start();
 			isPowerOn = true;
+			dispatch('synth', {
+				synth: new Tone.PolySynth(Tone.Synth).toDestination()
+			});
 		} else {
 			isPowerOn = false;
 		}
