@@ -8,9 +8,8 @@
 	function handleClick() {
 		synth ? synth.triggerAttackRelease(pitch, '8n') : '';
 
-		let parent = document.getElementById('powerButton');
-		console.log(parent);
-		parent ? parent.focus() : '';
+		let powerButton = document.getElementById('powerButton');
+		powerButton ? powerButton.focus() : '';
 	}
 
 	function handleOnKeyUp() {
