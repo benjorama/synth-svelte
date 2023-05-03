@@ -49,7 +49,7 @@
 	}
 </script>
 
-<div on:keydown={handleKeyDown} on:keyup={handleKeyUp}>
+<div id="keyboard" on:keydown={handleKeyDown} on:keyup={handleKeyUp}>
 	<PowerButton on:synthList={handleSaveSynth} />
 	<div class="whiteKeys">
 		<Key pitch={'C4'} text={'C'} synth={synthList ? synthList[0] : undefined} />

@@ -16,8 +16,6 @@
 				synthList.push(new Tone.Synth().toDestination());
 			}
 
-			console.log('dispatch synthList');
-
 			dispatch('synthList', {
 				synthList: synthList
 			});
@@ -31,7 +29,7 @@
 	}
 </script>
 
-<button on:click={handleClick}> Start audio </button>
+<button id="powerButton" on:click={handleClick}> Start audio </button>
 
 {#if isPowerOn}
 	<style>
