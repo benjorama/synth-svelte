@@ -68,7 +68,7 @@
 	.keyContent {
 		position: absolute;
 		bottom: 0;
-		left: 0;
-		text-align: right;
+		width: inherit;
+		text-align: center;
 	}
 </style>
