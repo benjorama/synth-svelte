@@ -2,6 +2,7 @@
 	import type * as Tone from 'tone';
 
 	export let pitch: string;
+	export let text: string;
 	export let synth: Tone.Synth | undefined = undefined;
 
 	function handleClick() {
@@ -27,7 +28,7 @@
 		on:keydown={handleOnKeyDown}
 		on:keypress={handleOnKeyPress}
 	>
-		{pitch}
+		<div class="keyContent">{text}</div>
 	</div>
 {:else}
 	<div
@@ -37,12 +38,13 @@
 		on:keydown={handleOnKeyDown}
 		on:keypress={handleOnKeyPress}
 	>
-		{pitch}
+		<div class="keyContent">{text}</div>
 	</div>
 {/if}
 
 <style>
 	.blackKey {
+		position: relative;
 		box-sizing: border-box;
 		width: 2em;
 		height: 9em;
@@ -55,10 +57,18 @@
 	}
 
 	.whiteKey {
+		position: relative;
 		box-sizing: border-box;
 		width: 3em;
 		height: 14em;
 		background-color: white;
 		border: 1px solid #bbb;
+	}
+
+	.keyContent {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		text-align: right;
 	}
 </style>

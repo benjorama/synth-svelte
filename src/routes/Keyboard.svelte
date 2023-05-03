@@ -52,25 +52,25 @@
 <div on:keydown={handleKeyDown} on:keyup={handleKeyUp}>
 	<PowerButton on:synthList={handleSaveSynth} />
 	<div class="whiteKeys">
-		<Key pitch={'C4'} synth={synthList ? synthList[0] : undefined} />
-		<Key pitch={'D4'} synth={synthList ? synthList[1] : undefined} />
-		<Key pitch={'E4'} synth={synthList ? synthList[2] : undefined} />
-		<Key pitch={'F4'} synth={synthList ? synthList[3] : undefined} />
-		<Key pitch={'G4'} synth={synthList ? synthList[4] : undefined} />
-		<Key pitch={'A4'} synth={synthList ? synthList[5] : undefined} />
-		<Key pitch={'B4'} synth={synthList ? synthList[6] : undefined} />
-		<Key pitch={'C5'} synth={synthList ? synthList[7] : undefined} />
+		<Key pitch={'C4'} text={'C'} synth={synthList ? synthList[0] : undefined} />
+		<Key pitch={'D4'} text={'D'} synth={synthList ? synthList[1] : undefined} />
+		<Key pitch={'E4'} text={'E'} synth={synthList ? synthList[2] : undefined} />
+		<Key pitch={'F4'} text={'F'} synth={synthList ? synthList[3] : undefined} />
+		<Key pitch={'G4'} text={'G'} synth={synthList ? synthList[4] : undefined} />
+		<Key pitch={'A4'} text={'A'} synth={synthList ? synthList[5] : undefined} />
+		<Key pitch={'B4'} text={'B'} synth={synthList ? synthList[6] : undefined} />
+		<Key pitch={'C5'} text={'C'} synth={synthList ? synthList[7] : undefined} />
 	</div>
 
 	<div class="blackKeys">
 		<div class="group2">
-			<Key pitch={'C#4'} synth={synthList ? synthList[8] : undefined} />
-			<Key pitch={'D#4'} synth={synthList ? synthList[9] : undefined} />
+			<Key pitch={'C#4'} text={'C#/Db'} synth={synthList ? synthList[8] : undefined} />
+			<Key pitch={'D#4'} text={'D#/Eb'} synth={synthList ? synthList[9] : undefined} />
 		</div>
 		<div class="group3">
-			<Key pitch={'F#4'} synth={synthList ? synthList[10] : undefined} />
-			<Key pitch={'G#4'} synth={synthList ? synthList[11] : undefined} />
-			<Key pitch={'A#4'} synth={synthList ? synthList[12] : undefined} />
+			<Key pitch={'F#4'} text={'F#/Gb'} synth={synthList ? synthList[10] : undefined} />
+			<Key pitch={'G#4'} text={'G#/Ab'} synth={synthList ? synthList[11] : undefined} />
+			<Key pitch={'A#4'} text={'A#/Bb'} synth={synthList ? synthList[12] : undefined} />
 		</div>
 	</div>
 </div>
