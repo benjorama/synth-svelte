@@ -4,15 +4,14 @@
 	import Key from './Key.svelte';
 
 	export let synthList: Tone.Synth[] | undefined = undefined;
+	export let keysDown: string[] = [];
 
 	function handleSaveSynth(e: { detail: { synthList: Tone.Synth<Tone.SynthOptions>[] } }) {
 		synthList = e.detail.synthList;
-		console.log('synth saved');
 	}
 
 	function handleKeyDown(e: KeyboardEvent) {
-		console.log('key down: ' + e.key);
-		if (synthList) {
+		if (synthList && !keysDown.includes(e.key)) {
 			e.key === 'a' ? synthList[0]?.triggerAttack('C4') : '';
 			e.key === 's' ? synthList[1]?.triggerAttack('D4') : '';
 			e.key === 'd' ? synthList[2]?.triggerAttack('E4') : '';
@@ -26,12 +25,12 @@
 			e.key === 'u' ? synthList[10]?.triggerAttack('F#4') : '';
 			e.key === 'i' ? synthList[11]?.triggerAttack('G#4') : '';
 			e.key === 'o' ? synthList[12]?.triggerAttack('A#4') : '';
+			keysDown.push(e.key);
 		}
 	}
 
 	function handleKeyUp(e: KeyboardEvent) {
-		console.log('key up: ' + e.key);
-		if (synthList) {
+		if (synthList && keysDown.includes(e.key)) {
 			e.key === 'a' ? synthList[0]?.triggerRelease() : '';
 			e.key === 's' ? synthList[1]?.triggerRelease() : '';
 			e.key === 'd' ? synthList[2]?.triggerRelease() : '';
@@ -45,6 +44,7 @@
 			e.key === 'u' ? synthList[10]?.triggerRelease() : '';
 			e.key === 'i' ? synthList[11]?.triggerRelease() : '';
 			e.key === 'o' ? synthList[12]?.triggerRelease() : '';
+			keysDown = keysDown.filter((keys) => keys !== e.key);
 		}
 	}
 </script>
