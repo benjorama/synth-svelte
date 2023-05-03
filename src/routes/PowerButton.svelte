@@ -23,6 +23,10 @@
 			});
 		} else {
 			isPowerOn = false;
+			synthList.forEach((synth) => {
+				synth.dispose();
+			});
+			synthList = [];
 		}
 	}
 </script>
