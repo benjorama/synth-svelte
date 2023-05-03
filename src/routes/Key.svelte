@@ -5,9 +5,12 @@
 	export let text: string;
 	export let synth: Tone.Synth | undefined = undefined;
 
-	function handleClick() {
-		synth ? synth.triggerAttackRelease(pitch, '8n') : '';
+	function handleMouseDown() {
+		synth ? synth.triggerAttack(pitch) : '';
+	}
 
+	function handleMouseUp() {
+		synth ? synth.triggerRelease() : '';
 		let powerButton = document.getElementById('powerButton');
 		powerButton ? powerButton.focus() : '';
 	}
@@ -26,7 +29,8 @@
 {#if pitch.includes('#')}
 	<div
 		class="blackKey"
-		on:click={handleClick}
+		on:mousedown={handleMouseDown}
+		on:mouseup={handleMouseUp}
 		on:keyup={handleOnKeyUp}
 		on:keydown={handleOnKeyDown}
 		on:keypress={handleOnKeyPress}
@@ -36,7 +40,8 @@
 {:else}
 	<div
 		class="whiteKey"
-		on:click={handleClick}
+		on:mousedown={handleMouseDown}
+		on:mouseup={handleMouseUp}
 		on:keyup={handleOnKeyUp}
 		on:keydown={handleOnKeyDown}
 		on:keypress={handleOnKeyPress}
