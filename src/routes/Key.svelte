@@ -4,6 +4,7 @@
 	export let pitch: string;
 	export let text: string;
 	export let synth: Tone.Synth | undefined = undefined;
+	export let keydown: boolean;
 
 	function handleMouseDown() {
 		synth ? synth.triggerAttack(pitch) : '';
@@ -28,7 +29,7 @@
 
 {#if pitch.includes('#')}
 	<div
-		class="blackKey"
+		class={keydown ? 'blackKey keyDown' : 'blackKey'}
 		on:mousedown={handleMouseDown}
 		on:mouseup={handleMouseUp}
 		on:keyup={handleOnKeyUp}
@@ -39,7 +40,7 @@
 	</div>
 {:else}
 	<div
-		class="whiteKey"
+		class={keydown ? 'whiteKey keyDown' : 'whiteKey'}
 		on:mousedown={handleMouseDown}
 		on:mouseup={handleMouseUp}
 		on:keyup={handleOnKeyUp}
@@ -71,6 +72,10 @@
 		height: 14em;
 		background-color: white;
 		border: 1px solid #bbb;
+	}
+
+	.keyDown {
+		background-color: lime;
 	}
 
 	.keyContent {

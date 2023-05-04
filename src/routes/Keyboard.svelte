@@ -3,8 +3,8 @@
 	import PowerButton from './PowerButton.svelte';
 	import Key from './Key.svelte';
 
-	export let synthList: Tone.Synth[] | undefined = undefined;
-	export let keysDown: string[] = [];
+	let synthList: Tone.Synth[] | undefined = undefined;
+	let keysDown: string[] = [];
 
 	function handleSaveSynth(e: { detail: { synthList: Tone.Synth<Tone.SynthOptions>[] } }) {
 		synthList = e.detail.synthList;
@@ -25,7 +25,7 @@
 			e.key === 'u' ? synthList[10]?.triggerAttack('F#4') : '';
 			e.key === 'i' ? synthList[11]?.triggerAttack('G#4') : '';
 			e.key === 'o' ? synthList[12]?.triggerAttack('A#4') : '';
-			keysDown.push(e.key);
+			keysDown = [...keysDown, e.key];
 		}
 	}
 
@@ -52,25 +52,90 @@
 <div id="keyboard" on:keydown={handleKeyDown} on:keyup={handleKeyUp}>
 	<PowerButton on:synthList={handleSaveSynth} />
 	<div class="whiteKeys">
-		<Key pitch={'C4'} text={'C'} synth={synthList ? synthList[0] : undefined} />
-		<Key pitch={'D4'} text={'D'} synth={synthList ? synthList[1] : undefined} />
-		<Key pitch={'E4'} text={'E'} synth={synthList ? synthList[2] : undefined} />
-		<Key pitch={'F4'} text={'F'} synth={synthList ? synthList[3] : undefined} />
-		<Key pitch={'G4'} text={'G'} synth={synthList ? synthList[4] : undefined} />
-		<Key pitch={'A4'} text={'A'} synth={synthList ? synthList[5] : undefined} />
-		<Key pitch={'B4'} text={'B'} synth={synthList ? synthList[6] : undefined} />
-		<Key pitch={'C5'} text={'C'} synth={synthList ? synthList[7] : undefined} />
+		<Key
+			pitch={'C4'}
+			text={'C'}
+			synth={synthList ? synthList[0] : undefined}
+			keydown={keysDown.includes('a') ? true : false}
+		/>
+		<Key
+			pitch={'D4'}
+			text={'D'}
+			synth={synthList ? synthList[1] : undefined}
+			keydown={keysDown.includes('s') ? true : false}
+		/>
+		<Key
+			pitch={'E4'}
+			text={'E'}
+			synth={synthList ? synthList[2] : undefined}
+			keydown={keysDown.includes('d') ? true : false}
+		/>
+		<Key
+			pitch={'F4'}
+			text={'F'}
+			synth={synthList ? synthList[3] : undefined}
+			keydown={keysDown.includes('f') ? true : false}
+		/>
+		<Key
+			pitch={'G4'}
+			text={'G'}
+			synth={synthList ? synthList[4] : undefined}
+			keydown={keysDown.includes('j') ? true : false}
+		/>
+		<Key
+			pitch={'A4'}
+			text={'A'}
+			synth={synthList ? synthList[5] : undefined}
+			keydown={keysDown.includes('k') ? true : false}
+		/>
+		<Key
+			pitch={'B4'}
+			text={'B'}
+			synth={synthList ? synthList[6] : undefined}
+			keydown={keysDown.includes('l') ? true : false}
+		/>
+		<Key
+			pitch={'C5'}
+			text={'C'}
+			synth={synthList ? synthList[7] : undefined}
+			keydown={keysDown.includes(';') ? true : false}
+		/>
 	</div>
 
 	<div class="blackKeys">
 		<div class="group2">
-			<Key pitch={'C#4'} text={'C#/Db'} synth={synthList ? synthList[8] : undefined} />
-			<Key pitch={'D#4'} text={'D#/Eb'} synth={synthList ? synthList[9] : undefined} />
+			<Key
+				pitch={'C#4'}
+				text={'C#/Db'}
+				synth={synthList ? synthList[8] : undefined}
+				keydown={keysDown.includes('w') ? true : false}
+			/>
+			<Key
+				pitch={'D#4'}
+				text={'D#/Eb'}
+				synth={synthList ? synthList[9] : undefined}
+				keydown={keysDown.includes('e') ? true : false}
+			/>
 		</div>
 		<div class="group3">
-			<Key pitch={'F#4'} text={'F#/Gb'} synth={synthList ? synthList[10] : undefined} />
-			<Key pitch={'G#4'} text={'G#/Ab'} synth={synthList ? synthList[11] : undefined} />
-			<Key pitch={'A#4'} text={'A#/Bb'} synth={synthList ? synthList[12] : undefined} />
+			<Key
+				pitch={'F#4'}
+				text={'F#/Gb'}
+				synth={synthList ? synthList[10] : undefined}
+				keydown={keysDown.includes('u') ? true : false}
+			/>
+			<Key
+				pitch={'G#4'}
+				text={'G#/Ab'}
+				synth={synthList ? synthList[11] : undefined}
+				keydown={keysDown.includes('i') ? true : false}
+			/>
+			<Key
+				pitch={'A#4'}
+				text={'A#/Bb'}
+				synth={synthList ? synthList[12] : undefined}
+				keydown={keysDown.includes('o') ? true : false}
+			/>
 		</div>
 	</div>
 </div>
