@@ -6,14 +6,18 @@
 	export let synth: Tone.Synth | undefined = undefined;
 	export let keydown: boolean;
 
+	let mousedown = false;
+
 	function handleMouseDown() {
 		synth ? synth.triggerAttack(pitch) : '';
+		mousedown = true;
 	}
 
 	function handleMouseUp() {
 		synth ? synth.triggerRelease() : '';
 		let powerButton = document.getElementById('powerButton');
 		powerButton ? powerButton.focus() : '';
+		mousedown = false;
 	}
 
 	function handleOnKeyUp() {
@@ -29,7 +33,7 @@
 
 {#if pitch.includes('#')}
 	<div
-		class={keydown ? 'blackKey keyDown' : 'blackKey'}
+		class={keydown || mousedown ? 'blackKey keyDown' : 'blackKey'}
 		on:mousedown={handleMouseDown}
 		on:mouseup={handleMouseUp}
 		on:keyup={handleOnKeyUp}
@@ -40,7 +44,7 @@
 	</div>
 {:else}
 	<div
-		class={keydown ? 'whiteKey keyDown' : 'whiteKey'}
+		class={keydown || mousedown ? 'whiteKey keyDown' : 'whiteKey'}
 		on:mousedown={handleMouseDown}
 		on:mouseup={handleMouseUp}
 		on:keyup={handleOnKeyUp}
