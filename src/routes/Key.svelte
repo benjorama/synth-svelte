@@ -87,5 +87,6 @@
 		bottom: 0;
 		width: inherit;
 		text-align: center;
+		user-select: none;
 	}
 </style>
