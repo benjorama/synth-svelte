@@ -1,31 +1,15 @@
 <script lang="ts">
-	import * as Tone from 'tone';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
 
-	export let isPowerOn = false;
-	export let synthList: Tone.Synth[] = [];
+	let isPowerOn = false;
 
 	async function handleClick() {
-		if (!isPowerOn) {
-			await Tone.start();
-			isPowerOn = true;
-
-			for (let i = 0; i < 13; i++) {
-				synthList.push(new Tone.Synth().toDestination());
-			}
-
-			dispatch('synthList', {
-				synthList: synthList
-			});
-		} else {
-			isPowerOn = false;
-			synthList.forEach((synth) => {
-				synth.dispose();
-			});
-			synthList = [];
-		}
+		isPowerOn ? (isPowerOn = false) : (isPowerOn = true);
+		dispatch('togglePower', {
+			isPowerOn: isPowerOn
+		});
 	}
 </script>
 
