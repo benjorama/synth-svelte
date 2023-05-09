@@ -2,6 +2,7 @@
 	import * as Tone from 'tone';
 	import Keyboard from './Keyboard.svelte';
 	import PowerButton from './PowerButton.svelte';
+	import SelectSynth from './SelectSynth.svelte';
 
 	let isPowerOn = false;
 	let selectedSynth: Tone.Synth[] = [];
@@ -31,4 +32,5 @@
 
 <h1>Synth</h1>
 <PowerButton on:togglePower={handleTogglePower} />
+<SelectSynth />
 <Keyboard {selectedSynth} />

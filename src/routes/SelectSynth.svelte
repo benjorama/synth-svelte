@@ -8,8 +8,9 @@
 		dispatch('selectSynth', {
 			value: target.value
 		});
+
 		let keyboard = document.getElementById('keyboard');
-		keyboard ? keyboard.focus() : '';
+		keyboard?.focus();
 	}
 </script>
 
