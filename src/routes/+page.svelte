@@ -5,7 +5,8 @@
 	import SelectSynth from './SelectSynth.svelte';
 
 	let isPowerOn = false;
-	let selectedSynth: Tone.Synth[] = [];
+	let selectedSynth = 'default';
+	let loadedSynth: Tone.Synth[] = [];
 
 	async function handleTogglePower(e: { detail: { isPowerOn: boolean } }) {
 		isPowerOn = e.detail.isPowerOn;
@@ -13,17 +14,20 @@
 			await Tone.start();
 			initSynth();
 		} else {
-			selectedSynth.forEach((synth) => {
+			loadedSynth.forEach((synth) => {
 				synth.dispose();
-				selectedSynth = [];
+				loadedSynth = [];
 			});
 			isPowerOn = false;
 		}
 	}
 
+	function handleSelectSynth(e: { detail: { value: string } }) {
+		selectedSynth = e.detail.value;
+	}
+
 	function initSynth() {
-		for (let i = 0; i < 13; i++)
-			selectedSynth = [...selectedSynth, new Tone.Synth().toDestination()];
+		for (let i = 0; i < 13; i++) loadedSynth = [...loadedSynth, new Tone.Synth().toDestination()];
 
 		let Keyboard = document.getElementById('keyboard');
 		Keyboard?.focus();
@@ -32,5 +36,5 @@
 
 <h1>Synth</h1>
 <PowerButton on:togglePower={handleTogglePower} />
-<SelectSynth />
-<Keyboard {selectedSynth} />
+<SelectSynth on:selectSynth={handleSelectSynth} />
+<Keyboard {loadedSynth} />
