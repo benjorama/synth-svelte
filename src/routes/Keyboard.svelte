@@ -50,7 +50,6 @@
 </script>
 
 <div id="keyboard" on:keydown={handleKeyDown} on:keyup={handleKeyUp}>
-	<PowerButton on:synthList={handleSaveSynth} />
 	<div class="whiteKeys">
 		<Key
 			pitch={'C4'}
