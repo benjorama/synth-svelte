@@ -6,7 +6,16 @@
 
 	let isPowerOn = false;
 	let selectedSynth = 'default';
-	let loadedSynth: (Tone.Synth | Tone.AMSynth)[] = [];
+	let loadedSynth: (
+		| Tone.Synth
+		| Tone.AMSynth
+		| Tone.DuoSynth
+		| Tone.MembraneSynth
+		| Tone.MetalSynth
+		| Tone.MonoSynth
+		| Tone.NoiseSynth
+		| Tone.PluckSynth
+	)[] = [];
 
 	async function handleTogglePower(e: { detail: { isPowerOn: boolean } }) {
 		isPowerOn = e.detail.isPowerOn;
@@ -41,9 +50,32 @@
 				for (let i = 0; i < 13; i++)
 					loadedSynth = [...loadedSynth, new Tone.AMSynth().toDestination()];
 				break;
+			case 'duosynth':
+				for (let i = 0; i < 13; i++)
+					loadedSynth = [...loadedSynth, new Tone.DuoSynth().toDestination()];
+				break;
+			case 'membranesynth':
+				for (let i = 0; i < 13; i++)
+					loadedSynth = [...loadedSynth, new Tone.MembraneSynth().toDestination()];
+				break;
+			case 'metalsynth':
+				for (let i = 0; i < 13; i++)
+					loadedSynth = [...loadedSynth, new Tone.MetalSynth().toDestination()];
+				break;
+			case 'monosynth':
+				for (let i = 0; i < 13; i++)
+					loadedSynth = [...loadedSynth, new Tone.MonoSynth().toDestination()];
+				break;
+			case 'noisesynth':
+				for (let i = 0; i < 13; i++)
+					loadedSynth = [...loadedSynth, new Tone.NoiseSynth().toDestination()];
+				break;
+			case 'plucksynth':
+				for (let i = 0; i < 13; i++)
+					loadedSynth = [...loadedSynth, new Tone.PluckSynth().toDestination()];
+				break;
 			default:
 		}
-		for (let i = 0; i < 13; i++) loadedSynth = [...loadedSynth, new Tone.Synth().toDestination()];
 
 		let Keyboard = document.getElementById('keyboard');
 		Keyboard?.focus();

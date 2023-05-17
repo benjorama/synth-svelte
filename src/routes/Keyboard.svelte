@@ -2,7 +2,16 @@
 	import type * as Tone from 'tone';
 	import Key from './Key.svelte';
 
-	export let loadedSynth: (Tone.Synth | Tone.AMSynth)[];
+	export let loadedSynth: (
+		| Tone.Synth
+		| Tone.AMSynth
+		| Tone.DuoSynth
+		| Tone.MembraneSynth
+		| Tone.MetalSynth
+		| Tone.MonoSynth
+		| Tone.NoiseSynth
+		| Tone.PluckSynth
+	)[];
 
 	let keysDown: string[] = [];
 
