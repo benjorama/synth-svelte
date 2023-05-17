@@ -3,7 +3,7 @@
 
 	export let pitch: string;
 	export let text: string;
-	export let synth: Tone.Synth | undefined = undefined;
+	export let synth: Tone.Synth | Tone.AMSynth | undefined = undefined;
 	export let keydown: boolean;
 
 	let mousedown = false;
